@@ -241,7 +241,7 @@ static NSPredicate* webViewProxyLoopDetection;
         _correctedRequest = request.mutableCopy;
         NSString* correctedFragment;
         if (_correctedRequest.URL.fragment) {
-            correctedFragment = @"__webviewproxyreq__";
+            correctedFragment = @"?__webviewproxyreq__";
         } else {
             correctedFragment = @"#__webviewproxyreq__";
         }
@@ -273,7 +273,7 @@ static NSPredicate* webViewProxyLoopDetection;
 + (void)initialize {
     requestMatchers = [NSMutableArray array];
     webViewUserAgentTest = [NSPredicate predicateWithFormat:@"self MATCHES '^Mozilla.*Mac OS X.*'"];
-    webViewProxyLoopDetection = [NSPredicate predicateWithFormat:@"self.fragment MATCHES '__webviewproxyreq__'"];
+    webViewProxyLoopDetection = [NSPredicate predicateWithFormat:@"self.fragment CONTAINS '__webviewproxyreq__'"];
     // e.g. "Mozilla/5.0 (iPhone; CPU iPhone OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Mobile/10A403"
     [NSURLProtocol registerClass:[WebViewProxyURLProtocol class]];
 }
