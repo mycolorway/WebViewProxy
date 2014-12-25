@@ -25,6 +25,7 @@ typedef void (^StopLoadingHandler)();
 - (void) respondWithStatusCode:(NSInteger)statusCode text:(NSString*)text;
 - (void) respondWithData:(NSData*)data mimeType:(NSString*)mimeType;
 - (void) respondWithData:(NSData*)data mimeType:(NSString*)mimeType statusCode:(NSInteger)statusCode;
+- (void) respondWithResponse:(NSHTTPURLResponse*)response data:(NSData *)data;
 // Pipe data API
 - (void) pipeResponse:(NSURLResponse*)response;
 - (void) pipeData:(NSData*)data;

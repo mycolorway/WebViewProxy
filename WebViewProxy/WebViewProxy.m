@@ -114,6 +114,15 @@ static NSPredicate* webViewProxyLoopDetection;
     [_protocol.client URLProtocol:_protocol didLoadData:data];
     [_protocol.client URLProtocolDidFinishLoading:_protocol];
 }
+
+- (void)respondWithResponse:(NSHTTPURLResponse *)response data:(NSData *)data
+{
+    if (_stopped) { return; }
+    [_protocol.client URLProtocol:_protocol didReceiveResponse:response cacheStoragePolicy:_cachePolicy];
+    [_protocol.client URLProtocol:_protocol didLoadData:data];
+    [_protocol.client URLProtocolDidFinishLoading:_protocol];
+}
+
 - (NSString*) _mimeTypeOf:(NSString*)pathExtension {
     static NSDictionary* mimeTypes = nil;
     if (mimeTypes == nil) {
